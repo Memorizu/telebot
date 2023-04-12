@@ -1,7 +1,7 @@
 import requests
 from bs4 import BeautifulSoup as bs
-
 from fake_useragent import UserAgent
+
 
 class Request:
 
@@ -56,5 +56,5 @@ class Request:
 request = Request()
 # print(request.movies_by_genres())
 # print(request.genres_list())
-print(request.movies_top())
+print(request.movies_by_genres())
 
