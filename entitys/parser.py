@@ -43,18 +43,19 @@ class Request:
         movies_list = [movie.text for movie in movies]
         return movies_list
 
-    def movies_by_genres(self):
+    def movies_by_genres(self, genre):
+        self.__genre_for_url = genre
         r = requests.get(self.__url_genres_interactive, headers=self.__agent)
 
         soup = bs(r.content, 'lxml')
         movies_row = soup.find('div', class_='styles_contentSlot__h_lSN').find_all('div', class_='styles_root__ti07r')
         movies_list = [movie.find('span', class_='styles_mainTitle__IFQyZ styles_activeMovieTittle__kJdJj').text
                        for movie in movies_row]
-        return movies_list
+        return '\n'.join(movies_list)
 
 
-request = Request()
-# print(request.movies_by_genres())
-# print(request.genres_list())
-print(request.movies_by_genres())
+# request = Request()
+# # # print(request.movies_by_genres())
+# # # print(request.genres_list())
+# print(request.movies_by_genres('action'))
 
